@@ -10,10 +10,8 @@ class BackgroundTile extends ParallaxComponent {
   BackgroundTile({
     this.color = 'Blue',
     this.scrollSpeed = 30,
-    Vector2? position,
-  }) : super(
-          position: position,
-        );
+    super.position,
+  });
 
   @override
   FutureOr<void> onLoad() async {
@@ -29,4 +27,3 @@ class BackgroundTile extends ParallaxComponent {
     return super.onLoad();
   }
 }
-

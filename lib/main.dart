@@ -1,7 +1,7 @@
 import 'package:flame/flame.dart';
 import 'package:flame/game.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:pixel_adventure/components/initial_menu.dart';
 import 'package:pixel_adventure/pixel.adventure.dart';
 
 void main() async {
@@ -12,31 +12,23 @@ void main() async {
   runApp(const MaterialApp(home: MainMenu()));
 }
 
-class MainMenu extends StatelessWidget {
+class MainMenu extends StatefulWidget {
   const MainMenu({super.key});
 
+  @override
+  State<MainMenu> createState() => _MainMenuState();
+}
+
+class _MainMenuState extends State<MainMenu> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: Scaffold(
-        backgroundColor: const Color(0xFF211F30), // Cor de fundo do jogo
-        body: Center(
-          child: ElevatedButton(
-            onPressed: () {
-              // Inicia o jogo quando o botão é pressionado
-              Navigator.pushReplacement(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => GameWidget(
-                    game: kDebugMode ? PixelAdventure() : PixelAdventure(),
-                  ),
-                ),
-              );
-            },
-            child: const Text('Começar Jogo'),
-          ),
-        ),
+      home: Stack(
+        children: [
+          GameWidget(game: PixelAdventure()),
+          InitialMenu(),
+        ],
       ),
     );
   }
